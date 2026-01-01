@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Status Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .status-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin: 30px 0;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .status-box:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 180px;
+            justify-content: center;
+        }
+
+        .generate {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .generate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .copy {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
+        }
+
+        .copy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(78, 205, 196, 0.4);
+        }
+
+        .copied {
+            background: #6c757d !important;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Status Generator</h1>
+        
+        <div class="status-box" id="status">
+            Tap generate untuk mulai...
+        </div>
+
+        <div class="buttons">
+            <button class="generate" onclick="generateNewStatus()">
+                <i class="fas fa-sync-alt"></i> Generate New
+            </button>
+            <button class="copy" id="copyBtn" onclick="copyStatus()">
+                <i class="fas fa-copy"></i> Copy Status
+            </button>
+        </div>
+
+        <div class="footer">
+            Refresh atau klik generate untuk status baru ✨
+        </div>
+    </div>
+
+    <script>
+        const statuses = [
+            "🎥 Private video calls\n🎬 Exclusive access to adult chat 😊\n📲 Hot videos (XXX) 🔞 WhatsApp\nEverything's in the link 💦👅\n👇👇🔞👇👇",
+            "💫❤️\n🎀I can't post adult photos or videos on Instagram\nplease see here\n🎬🌷📲👇",
+            "🎀I can't post adult photos or videos on Instagram...\nplease see here❤\nGet to know my private side…\nMy private area\nLink in bio👇👇👇",
+            "Enjoy life. Fun, bold, sincere, and single ❤️. The only other side of me ️📩⤵️",
+            "👀I'm alone and I only want you. I'm from Los Angeles. If you're interested, follow my page 💔With me you'll spend the night👙😤 👇",
+            "🎬🔞Join my WhatsApp group 📷 My private area 👇👇👇",
+            "🐾🐍 Sorry, I can't post photos yet, but there are lots of the hottest photos and videos in my bio link 😗😍\n👇🏻🔥 WELCOME 🔥👇🏻",
+            "🍻🇺🇸🇨🇦🇦🇺💫\n❣️ I can't upload wet photos or videos on Instagram.\nCheck them out here\n🎬😘📲👇",
+            "Single💋 | wet live 💦| DM Online\n📍Mount Greenwood, Chicago\n⫸💕 Sleep Bookings\n⫸🎥 private video call✨\nLink to join the XxX Christmas party⬇️"
+        ];
+
+        function getRandomStatus() {
+            const randomIndex = Math.floor(Math.random() * statuses.length);
+            return statuses[randomIndex];
+        }
+
+        function generateNewStatus() {
+            const newStatus = getRandomStatus();
+            const statusElement = document.getElementById('status');
+            statusElement.style.opacity = '0';
+            setTimeout(() => {
+                statusElement.textContent = newStatus;
+                statusElement.style.opacity = '1';
+            }, 300);
+
+            // Reset tombol copy
+            const copyBtn = document.getElementById('copyBtn');
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Status';
+            copyBtn.classList.remove('copied');
+        }
+
+        function copyStatus() {
+            const statusText = document.getElementById('status').textContent;
+            navigator.clipboard.writeText(statusText).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.classList.add('copied');
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Status';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Status pertama saat load
+        window.onload = () => {
+            generateNewStatus();
+        };
+    </script>
+</body>
+</html>
