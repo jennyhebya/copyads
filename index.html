@@ -3,155 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Status Generator</title>
+    <title>IG Bio Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a0a2e 50%, #16213e 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            color: #fff;
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(20, 20, 30, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 105, 180, 0.3);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 40px 30px;
+            max-width: 520px;
             width: 100%;
-            max-width: 500px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             text-align: center;
-            color: white;
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.2);
         }
 
-        h1 { font-size: 28px; margin-bottom: 30px; font-weight: 600; letter-spacing: 1px; }
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff69b4, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
 
-        .status-box {
-            background: rgba(0, 0, 0, 0.2);
+        .subtitle { font-size: 16px; margin-bottom: 30px; opacity: 0.8; }
+
+        .bio-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 105, 180, 0.4);
             border-radius: 16px;
-            padding: 30px 20px;
-            margin: 30px 0;
+            padding: 30px 25px;
             min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+            margin: 30px 0;
+            font-size: 19px;
             line-height: 1.8;
             white-space: pre-wrap;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.15) inset;
             transition: all 0.4s ease;
+            user-select: text;
         }
 
-        .status-box:hover { background: rgba(0, 0, 0, 0.3); transform: translateY(-5px); }
+        .bio-box:hover {
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.3) inset;
+            transform: scale(1.02);
+        }
 
-        .buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
         button {
-            padding: 14px 30px;
-            font-size: 16px;
+            padding: 16px 36px;
+            font-size: 17px;
             font-weight: 600;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             min-width: 180px;
             justify-content: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .generate { background: linear-gradient(45deg, #ff6b6b, #ee5a52); color: white; box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3); }
-        .generate:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(255, 107, 107, 0.4); }
+        .generate { background: linear-gradient(45deg, #ff69b4, #ff1493); color: white; }
+        .generate:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(255, 105, 180, 0.5); }
 
-        .copy { background: linear-gradient(45deg, #4ecdc4, #44a08d); color: white; box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3); }
-        .copy:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(78, 205, 196, 0.4); }
+        .copy { background: linear-gradient(45deg, #9d4edd, #6a1b9a); color: white; }
+        .copy:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(157, 78, 221, 0.5); }
 
-        .copied { background: #6c757d !important; box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4); }
+        .copied { background: #2ecc71 !important; box-shadow: 0 15px 35px rgba(46, 204, 113, 0.5); }
 
-        .footer { margin-top: 40px; font-size: 14px; opacity: 0.8; }
+        .footer { margin-top: 40px; font-size: 13px; opacity: 0.7; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Random Status Generator</h1>
+        <h1>BIO GENERATOR</h1>
+        <p class="subtitle">Random bio seksi untuk Instagram kamu</p>
         
-        <div class="status-box" id="status">
-            Tap generate untuk mulai...
-        </div>
+        <div class="bio-box" id="bio">Klik Generate untuk mulai…</div>
 
         <div class="buttons">
-            <button class="generate" onclick="generateNewStatus()">
+            <button class="generate" onclick="generate()">
                 <i class="fas fa-sync-alt"></i> Generate New
             </button>
-            <button class="copy" id="copyBtn" onclick="copyStatus()">
-                <i class="fas fa-copy"></i> Copy Status
+            <button class="copy" id="copyBtn" onclick="copyBio()">
+                <i class="fas fa-copy"></i> Copy Bio
             </button>
         </div>
 
         <div class="footer">
-            Status aman untuk Instagram & WhatsApp ✨
+            16 bio random • Semua aman untuk Instagram bio ✨
         </div>
     </div>
 
     <script>
-        const statuses = [
-            "🎥 Private video calls\n🎬 Exclusive access to adult chat 😊\n📲 Hot videos (XXX) 🔞 WhatsApp\nEverything's in the link 💦👅\n👇👇🔞👇👇",
-            "💫❤️\n🎀I can't post adult photos or videos on Instagram\nplease see here\n🎬🌷📲👇",
-            "🎀I can't post adult photos or videos on Instagram...\nplease see here❤\nGet to know my private side…\nMy private area\nLink in bio👇👇👇",
-            "Enjoy life. Fun, bold, sincere, and single ❤️\nThe only other side of me 📩⬇️",
-            "👀I'm alone and I only want you. I'm from Los Angeles.\nIf you're interested, follow my page 💔\nWith me you'll spend the night👙😤 👇",
-            "🎬🔞 Join my WhatsApp group 📷\nMy private area 👇👇👇",
-            "😗😍 Sorry, I can't post photos yet,\nbut there are lots of the hottest photos and videos in my bio link\n👇🔥 WELCOME 🔥👇",
-            "🍻💫\n❤️ I can't upload wet photos or videos on Instagram.\nCheck them out here\n🎬😘📲👇",
-            "Single💋 | wet live 💦 | DM Online\n📍Mount Greenwood, Chicago\n💕 Sleep Bookings\n🎥 Private video call✨\nLink to join the XxX party ⬇️"
+        const bios = [
+`🔞 Private video call 💦
+Exclusive adult chat 😈
+Hot XXX videos 📲
+All in the link 👇👇`,
+
+`❤️ Can't post 18+ on IG
+My private photos & videos here
+Click link in bio 👇🔥`,
+
+`🎀 Too naughty for Instagram…
+See my private side 😏
+Link in bio 👇👇👇`,
+
+`Single & ready 💋
+Wet live show 💦
+DM me now 📩
+Link below 👇`,
+
+`From Los Angeles 🌴
+Lonely tonight… want you 😘
+Private content 👇🔞`,
+
+`🔞 Join my WhatsApp group
+Real private photos & videos
+Click link 👇👇👇`,
+
+`😍 Can't post my hot photos here
+Everything is in my bio link
+Welcome baby 👇🔥`,
+
+`💦 Wet content not allowed on IG
+Check my private gallery
+Link in bio 👇🎬`,
+
+`Chicago girl 🏙️
+Sleep bookings 💕
+Private video call 📹
+Link to join party 👇`,
+
+`🎥 Private video calls
+🎬 Exclusive adult chat 😊
+📲 Hot videos (XXX) 🔞
+WhatsApp • All in the link 💦👅 👇👇`,
+
+`💫❤️
+🎀 Can't post adult on Instagram
+Please see here 🎬🌷📲👇`,
+
+`Enjoy life. Fun, bold, sincere, single ❤️
+The only other side of me 📩👇`,
+
+`👀 I'm alone & I only want you
+From Los Angeles. Follow me 💔
+Spend the night with me 👙😤 👇`,
+
+`🎬🔞 Join my WhatsApp group 📷
+My private area 👇👇👇`,
+
+`😗😍 Sorry, can't post photos yet
+Hottest photos & videos in bio link
+👇🔥 WELCOME 🔥👇`,
+
+`💫
+❤️ Can't upload wet photos/videos on IG
+Check them out here 🎬😘📲👇`,
+
+`Single 💋 | Wet live 💦 | DM Online
+📍Mount Greenwood, Chicago
+💕 Sleep bookings
+🎥 Private video call ✨
+Link to join party 👇`
         ];
 
-        function getRandomStatus() {
-            const randomIndex = Math.floor(Math.random() * statuses.length);
-            return statuses[randomIndex];
-        }
-
-        function generateNewStatus() {
-            const newStatus = getRandomStatus();
-            const statusElement = document.getElementById('status');
-            statusElement.style.opacity = '0';
-            setTimeout(() => {
-                statusElement.textContent = newStatus;
-                statusElement.style.opacity = '1';
+        function generate(){
+            const r = Math.floor(Math.random() * bios.length);
+            const el = document.getElementById('bio');
+            el.style.opacity = 0;
+            setTimeout(()=>{ 
+                el.textContent = bios[r]; 
+                el.style.opacity = 1; 
             }, 300);
-
-            const copyBtn = document.getElementById('copyBtn');
-            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Status';
-            copyBtn.classList.remove('copied');
+            
+            const btn = document.getElementById('copyBtn');
+            btn.innerHTML = '<i class="fas fa-copy"></i> Copy Bio';
+            btn.classList.remove('copied');
         }
 
-        function copyStatus() {
-            const statusText = document.getElementById('status').textContent;
-            navigator.clipboard.writeText(statusText).then(() => {
-                const copyBtn = document.getElementById('copyBtn');
-                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                copyBtn.classList.add('copied');
-                setTimeout(() => {
-                    copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Status';
-                    copyBtn.classList.remove('copied');
-                }, 2000);
-            });
+        function copyBio(){
+            const text = document.getElementById('bio').textContent;
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopied();
+                }).catch(() => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
         }
 
-        window.onload = () => {
-            generateNewStatus();
-        };
+        function showCopied() {
+            const b = document.getElementById('copyBtn');
+            b.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            b.classList.add('copied');
+            setTimeout(() => {
+                b.innerHTML = '<i class="fas fa-copy"></i> Copy Bio';
+                b.classList.remove('copied');
+            }, 2000);
+        }
+
+        function fallbackCopy(text) {
+            const el = document.getElementById('bio');
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+            try {
+                document.execCommand('copy');
+                showCopied();
+            } catch (err) {
+                alert('Copy otomatis gagal. Select teks & copy manual (Ctrl+C atau long press)');
+            }
+
+            setTimeout(() => sel.removeAllRanges(), 3000);
+        }
+
+        window.onload = generate;
     </script>
 </body>
 </html>
